@@ -9,9 +9,9 @@ import (
 	"sort"
 )
 
-const PLAYERS = 64
-const ITERATIONS = 1000000
-const GAMES = 7
+const PLAYERS = 512
+const ITERATIONS = 50000
+const GAMES = 3
 
 func simulate(retch chan string, array player.Array, tourney tournament.Tournament) {
 	out := fmt.Sprintf("%T\n", tourney)
@@ -60,8 +60,25 @@ func simulate(retch chan string, array player.Array, tourney tournament.Tourname
 	retch <- out
 }
 
+func measure_extended(double_extended tournament.Tournament) {
+	tournament.NumMatches = 0
+	tournament.NumExtendedSeries = 0
+	for i := 0; i < ITERATIONS; i++ {
+ 		tournament.Tournament(double_extended).Run(array, tournament.BestOfMatch{3})
+// 		fmt.Println(tournament.NumMatches)
+	}
+	fmt.Println("avg extended ", float(tournament.NumExtendedSeries) / ITERATIONS)
+	fmt.Println("avg corrected ", float(tournament.NumCorrections) / ITERATIONS)
+	fmt.Println("avg uncorrected ", float(tournament.NumUncorrections) / ITERATIONS)
+	fmt.Println("avg injustice ", float(tournament.NumInjustices) / ITERATIONS)
+	fmt.Println("fraction extended ", float(tournament.NumExtendedSeries) / ((2 * PLAYERS - 1) * ITERATIONS))
+	fmt.Println("fraction corrected ", float(tournament.NumCorrections) / float(tournament.NumExtendedSeries))
+	fmt.Println("fraction uncorrected ", float(tournament.NumUncorrections) / float(tournament.NumExtendedSeries))
+	fmt.Println("fraction injustice ", float(tournament.NumInjustices) / float(tournament.NumExtendedSeries))
+}
+
 func main() {
- 	runtime.GOMAXPROCS(8)
+  	runtime.GOMAXPROCS(1)
 	array := player.NewArray(PLAYERS)
 	ch := make(chan string)
 
@@ -74,11 +91,10 @@ func main() {
 	double := &tournament.DoubleElimination{}
  	go simulate(ch, array, double)
 
-	double_extended := &tournament.DoubleEliminationExtendedSeries{}
+ 	double_extended := &tournament.DoubleEliminationExtendedSeries{}
  	go simulate(ch, array, double_extended)
 
 	roundrobin := &tournament.RoundRobin{}
-// 	fmt.Println(tournament.Tournament(roundrobin).Run(array, tournament.BestOfMatch{1}))
 	go simulate(ch, array, roundrobin)
 
 	for i := 0; i < 4; i++ {

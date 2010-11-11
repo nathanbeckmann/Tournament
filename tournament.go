@@ -42,7 +42,10 @@ type BestOfMatch struct {
 	Games int
 }
 
+var NumMatches int = 0
+
 func (m BestOfMatch) Play(i, j int, array player.Array, rand *rand.Rand) (int, int, int) {
+	NumMatches++
 	iwins, jwins := 0, 0
 	games := 0
 	for {
@@ -184,23 +187,25 @@ type DoubleEliminationExtendedSeries struct {
 
 type ExtendedSeriesMatch struct {
 	match BestOfMatch
-	a, b int
 	gamehistory [][]int
 }
 
 var NumExtendedSeries int = 0
+var NumCorrections int = 0
+var NumUncorrections int = 0
+var NumInjustices int = 0
 
 func (m ExtendedSeriesMatch) Play(i, j int, array player.Array, rand *rand.Rand) (int, int, int) {
 	var agames, bgames, ngames int
 
 	towin := (m.match.Games + 1) / 2
-	if m.gamehistory[m.a][m.b] != 0 {
+	if m.gamehistory[i][j] != 0 {
 		NumExtendedSeries++
-		agames, bgames = towin, m.gamehistory[m.a][m.b] - towin
+		agames, bgames = towin, m.gamehistory[i][j] - towin
 		ngames = m.match.Games * 2 + 1
-	} else if m.gamehistory[m.b][m.a] != 0 {
+	} else if m.gamehistory[j][i] != 0 {
 		NumExtendedSeries++
-		agames, bgames = m.gamehistory[m.b][m.a] - towin, towin
+		agames, bgames = m.gamehistory[j][i] - towin, towin
 		ngames = m.match.Games * 2 + 1
 	} else {
 		agames, bgames = 0, 0
@@ -218,8 +223,26 @@ func (m ExtendedSeriesMatch) Play(i, j int, array player.Array, rand *rand.Rand)
 		}
 
 		if iwins > ngames / 2 {
+			// Less(i,j) <=> i is better than j (confusing)
+			if array.Less(i,j) && bgames > agames {
+				NumCorrections++
+			} else if array.Less(j,i) && agames > bgames {
+				NumUncorrections++
+			} else if array.Less(j,i) && bgames > agames {
+				NumInjustices++
+			}
+
 			return i, j, games
 		} else if jwins > ngames / 2 {
+			// Less(i,j) <=> i is better than j (confusing)
+			if array.Less(j,i) && agames > bgames {
+				NumCorrections++
+			} else if array.Less(i,j) && bgames > agames {
+				NumUncorrections++
+			} else if array.Less(i,j) && agames > bgames {
+				NumInjustices++
+			}
+
 			return j, i, games
 		}
 	}
@@ -285,14 +308,14 @@ func (t DoubleEliminationExtendedSeries) Run(array player.Array, match Match) []
 			b := losers[r-1][2 * i + 1]
 
 			// Here is where we need to employ extended series rule
-			ext_match := ExtendedSeriesMatch{match.(BestOfMatch), a, b, gamehistory}
+			ext_match := ExtendedSeriesMatch{match.(BestOfMatch), gamehistory}
 			losers[r][i], results[num_ranked], _ = ext_match.Play(a, b, array, rand)
 			num_ranked--
 
 			a = losers[r][i]
 			b = losersvswinners[r][i]
 
-			ext_match = ExtendedSeriesMatch{match.(BestOfMatch), a, b, gamehistory}
+			ext_match = ExtendedSeriesMatch{match.(BestOfMatch), gamehistory}
 			losers[r][i], results[num_ranked], _ = ext_match.Play(a, b, array, rand)
 			num_ranked--
 		}
