@@ -249,8 +249,6 @@ func (t DoubleEliminationExtendedSeries) Run(array player.Array, match Match) []
 		}
 	}
 
-	// TODO: Need new match method that returns loser's # of wins, or modify existing
-
 	winners[0] = initialSeeds(array.Len())
 
 	for r := 1; ; r++ {
@@ -316,6 +314,38 @@ func (t DoubleEliminationExtendedSeries) Run(array player.Array, match Match) []
 
 	if num_ranked != 0 {
 		panic("Didn't rank all the players!")
+	}
+
+	return results
+}
+
+type RoundRobin struct { }
+
+func (t RoundRobin) Run(array player.Array, match Match) []int {
+	rand := rand.New(rand.NewSource(time.Seconds()))
+	results := make([]int, array.Len())
+	wins := make([]int, array.Len())
+
+	// Every player plays every other once, sort players by number of wins
+
+	for a := 0; a < array.Len(); a++ {
+		for b := a + 1; b < array.Len(); b++ {
+			winner, _, _ := match.Play(a, b, array, rand)
+			wins[winner]++
+		}
+	}
+
+	for i := 0; i < len(results); i++ {
+		best := 0
+
+		for j := range wins {
+			if wins[j] > wins[best] {
+				best = j
+			}
+		}
+
+		results[i] = best
+		wins[best] = -1
 	}
 
 	return results

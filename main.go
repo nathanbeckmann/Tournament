@@ -4,12 +4,13 @@ import (
 	"./player"
 	"./tournament"
 	"fmt"
-// 	"runtime"
+ 	"runtime"
 	"container/vector"
 	"sort"
 )
 
-const ITERATIONS = 10000
+const PLAYERS = 64
+const ITERATIONS = 1000000
 const GAMES = 7
 
 func simulate(retch chan string, array player.Array, tourney tournament.Tournament) {
@@ -60,9 +61,12 @@ func simulate(retch chan string, array player.Array, tourney tournament.Tourname
 }
 
 func main() {
-// 	runtime.GOMAXPROCS(8)
-	array := player.NewArray(512)
+ 	runtime.GOMAXPROCS(8)
+	array := player.NewArray(PLAYERS)
 	ch := make(chan string)
+
+	fmt.Println(PLAYERS, " players")
+	fmt.Println(ITERATIONS, " iterations")
 
 	single := &tournament.SingleElimination{}
   	go simulate(ch, array, single)
@@ -72,13 +76,12 @@ func main() {
 
 	double_extended := &tournament.DoubleEliminationExtendedSeries{}
  	go simulate(ch, array, double_extended)
-// 	tournament.Tournament(double_extended).SetMatch(tournament.BestOfMatch{3})
-// 	for i := 0; i < 1000; i++ {
-// 		tournament.Tournament(double_extended).Run(array)
-// 	}
-// 	fmt.Println(tournament.NumExtendedSeries)
 
-	for i := 0; i < 3; i++ {
+	roundrobin := &tournament.RoundRobin{}
+// 	fmt.Println(tournament.Tournament(roundrobin).Run(array, tournament.BestOfMatch{1}))
+	go simulate(ch, array, roundrobin)
+
+	for i := 0; i < 4; i++ {
 		fmt.Print(<-ch)
 	}
 }
