@@ -242,7 +242,7 @@ Format         | Winner | Depth | 2^Depth
 Single         | 0.91   | 52.09 | 110.07
 Double         | 0.88   | 48.31 | 89.83
 DoubleExtended | 0.88   | 46.01 | 87.42
-RoundRobin     |
+RoundRobin     | 0.72   | 22.29 | 28.85
 
 Note that these are distance metrics, so lower is always better. For
 the 'winner' metric, this number indicates the fraction of the time
@@ -288,9 +288,54 @@ extended series seems to make very little difference.
 
 4.3 VARYING NUMBER OF PLAYERS
 
-
+In this section, we compare the effect on accuracy when changing the
+number of players in the tournament. I have to break methodology here
+a bit, because I don't have the time to wait for a million simulations
+of a 512-player round robin tournament to finish. So instead, I
+simulated fifty thousand simulations. Consequently, there is a little
+more noise in these results.
 
 4.4 EFFECT OF EXTENDED SERIES
+
+We now consider the effect of the extended series in
+isolation. Specifically, how often is the extended series used, and
+how often does is "correct an injustice" from the winners' bracket?
+
+In this case, we consider a 64-player tournament in double elimination
+with extended series format. In a standard double-elimination format,
+127 matches will be played.
+
+Simulation shows that, on average, 18.8 extended series will be played
+in a 64-player tournament. This means that 15% of matches, on average,
+will be rematches of players.
+
+Similarly, of these 18.8 matches, 3.03 of them will result in
+"corrections". A correction is when the better player loses in the
+winners' bracket and wins the extended series to continue in the
+tournament. In 2.17 of the matches, the worse player won in the
+winners' bracket and won the extended series, meaning the extended
+series failed to "correct" the result from the winners'
+bracket.
+
+The worst possible outcome is when the better play wins in the
+winners' bracket and loses the extended series. The extended series
+does well here, only introducing 0.55 such results per tournament, or
+3% of the extended series.
+
+Considering the disadvantage that the better player has when entering
+the extended series, it does surprisingly well at correcting these
+results, succeeding 58% of the time. At the same time, it only
+introduces bad results 3% of the time.
+
+I am tempted to conlude that extended series is successful at letting
+the better player continue in the tournament, however data is missing
+to compare against a standard double elimination tournament. A good
+area of extension for this study would be measuring the outcome if a
+regular best-of-three were done, and comparing its
+correction/injustice rate to the extended series. The ratio from the
+extended series (58%/3%) seems pretty hard to beat -- I would expect a
+best-of-three to allow the better play to proceed more often, but have
+a much higher injustice rate.
 
 5. CONCLUSION
 

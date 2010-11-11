@@ -1,0 +1,10 @@
+64  players
+1000000  iterations
+avg extended  18.87912
+avg corrected  3.033505
+avg uncorrected  2.17236
+avg injustice  0.545739
+fraction extended  0.14865449
+fraction corrected  0.16068043
+fraction uncorrected  0.115066804
+fraction injustice  0.028907014
