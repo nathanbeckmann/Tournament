@@ -1,0 +1,128 @@
+ABSTRACT
+
+On the most recent State of the Game podcast, there was discussion of
+MLG's extended series rule in their double elimination
+tournament. This post explores the effects of the extended series rule
+on tournament outcomes, using a simplified model of players and
+tournaments. Several tournament formats are explored: round robin,
+single elimination, double elimination, and double elimination with
+extended series. Performance is measured by averaging over many
+simulations, using several distance metrics from the 'ideal ranking'
+of players.  Results show a small but measurable improvement in
+performance when using the extended series rule; with 64 players in a
+best-of-three format, the 'best player' wins 1% more often (25%
+compared to 24%) using the extended series rule than with simple
+double elimination. However, the improvement from the extended series
+rule is marginal compared to the overall tournament format; in
+single-elimination, the best player wins 19% of the time, and in
+round-robin the best player wins 47% of the time.
+
+1. INTRODUCTION
+
+MLG is the largest Starcraft II tournament in North America, and
+consequently its tournament format has a large impact on the
+competitive scene. MLG employs a fairly standard double-elimination
+tournament format, with each round determined by a best-of-three
+series. However, MLG has an additional wrinkle called 'extended
+series', which many people find counter-intuitive. To explain these
+complexities, let's start with an overview of different tournament
+formats.
+
+A single elimination tournament is the simplest format that most
+people are familiar with. Play proceeds in rounds, with all players
+starting in the same round. Players are then paired in each round and
+play a series. The winner proceeds to the next round, and the loser is
+eliminated from the tournament. This format has the advantage of
+determining a champion in very few games (O(log(# of players))), but
+the disadvantage that bad luck can knock out good players at an early
+stage.
+
+To help with this problem, double elimination tournaments ensure that
+any player must lose twice in order to knocked out of the
+tournament. This is done by having two brackets: 'winners' and
+'losers'. All players begin in the winners' bracket, and after losing
+once are sent to the losers'. Players in the loser's bracket play each
+other, as well as all players who join the losers' bracket from the
+winner's bracket. Therefore, players in the losers' bracket play
+twice as many series as those in the winners'.
+
+MLG has extended the double elimination format with an 'extended
+series' rule that is invoked when players meet twice in a single
+tournament. If players meet in the winners' bracket, and later again
+in the losers' bracket, then instead of playing a new best-of-three
+series, their series from the winners' bracket is resumed as a
+best-of-seven series. Example: If Alice beats Bob 2-1 in the winners'
+bracket, and they meet again in the losers' bracket, then they will
+play a best-of-seven series to determine the winner with a starting
+score 2-1 in favor of Alice. Alice has to win two games to proceed,
+and Bob has to win three.
+
+This rule is intended to avoid some paradoxical outcomes, as well as
+statistically increase the likelihood that the 'better player'
+continues in the tournament. It is possible in standard double
+elimination for Alice to defeat Bob 2-1 in the winners', and Bob to
+defeat Alice in the losers' 2-0. The "overall series" between Alice
+and Bob is 3-2 in Alice's favor, but Bob continues and Alice does
+not.
+
+Similarly, another argument is that double elimination exists in order
+to give better players a 'second chance' to continue in the tournament
+when defeated by inferior players, but this logic does not apply when
+the same players meet again. In this case, it makes more sense (so the
+argument goes) to extend the series to determine the 'better player'.
+
+Despite these arguments, the extended series has generated
+controversy, because in many instances the tournament setting is very
+different when the series resumes, and many people find it
+unentertaining and counter-intuitive.
+
+In particular, the extended series between Liquid`Tyler and PainUser
+at MLG Dallas demonstrates some of the problems. In their series in
+the winners' bracket, Liquid`Tyler fell victim to a mistake of the
+tournament organizers, and was forced to restart a game that he had a
+clear advantage. Liquid`Tyler subsequently lost the series 2-0, which
+some have argued was due to the psychological effect of the game
+restart. When they later met in the losers' bracket, Liquid`Tyler was
+at a significant disadvantage, and lost the extended series 2-4, but
+would have won a best-of-three.
+
+This post is organized into several sections. Section 2 describes how
+these results were gathered, and the various models used. Section 3
+describes the experimental setup. Section 4 presents the
+results. Section 5 concludes, and Section 6 shows where to follow up
+on this if you are interested.
+
+1.1 SCOPE
+
+This post is an in-depth analysis of the statistical performance of
+different tournament formats. It is not concerned with many other
+important questions, for example:
+
+  * What is the purpose of tournaments, beyond determining skill of
+    players?
+
+  * Is the extended series rule entertaining?
+
+  * Is the extended series rule morally justified?
+
+  * Players aren't strictly 'better' or 'worse' than each other -- or,
+    at least, this relationship isn't transitive between players.
+
+  * The tournament setting can change when an extended series resumes.
+
+These questions will and have been addressed elsewhere.
+
+2. DESCRIPTION
+
+
+
+3. METHODOLOGY
+
+4. RESULTS
+
+5. CONCLUSION
+
+6. SEE ALSO
+
+6.1 SOURCE CODE
+
