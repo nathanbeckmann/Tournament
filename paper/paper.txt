@@ -72,7 +72,7 @@ the same players meet again. In this case, it makes more sense (so the
 argument goes) to extend the series to determine the 'better player'.
 
 Despite these arguments, the extended series has generated
-controversy, because in many instances the tournament setting is very
+controversy because in many instances the tournament setting is very
 different when the series resumes, and many people find it
 unentertaining and counter-intuitive.
 
@@ -114,13 +114,187 @@ These questions will and have been addressed elsewhere.
 
 2. DESCRIPTION
 
+This post explores the accuracy of several tournament formats,
+focusing on the impact of the extended series rule. This is done using
+simulation, running through many thousands of tournaments and
+comparing the average results. This section describes the player
+model, tournament model, and accuracy metrics used in the results.
 
+2.1 PLAYER MODEL
+
+Players are modeled using a simple randomized model. The goal is to
+have players of greater or lesser skill, but have each player vary
+somewhat in their performance. Players therefore consist of two
+numbers: mean performance and deviation. Performance for a single
+player is randomly generated each game, and lies in the range
+[mean - dev, mean + dev].
+
+The mean performance lies between 0 and 2, and the deviation is always
+1. This ensures that the worst player can always beat the best player,
+however at the extremes this is unlikely.
+
+A players performance is calculated as follows:
+
+   performance = mean + dev * rand^2 * plusminus
+
+Where rand is a uniformly-distributed number in [0,1] and plusminus is
+seleted from {-1,1} with even probability. This formula makes the mass
+of the probability distributed concentrated around the mean, making
+the better players win more often.
+
+To generate a set of players for a tournament, each player's mean is
+selected uniformly from [0,2]. This is probably inaccurate -- player's
+mean performance is likely distributed on a normal curve.
+
+2.1 TOURNAMENT MODEL
+
+The rules for each tournament are faithfully replicated in the
+simulation, however there are some modelling choices here as well. The
+most significant is the seeding of players in each tournament. I have
+chosen to use the "ideal seeding", as determined by players' mean
+performance, as the initial seeding for players. This removes a source
+of inaccuracy from elimination tournaments, and so the results should
+be taken as an upper bound for their performance.
+
+Four tournament types are considered: single elimination, double
+elimination, double elimination with extended series, and round
+robin. The focus of this post is on the effect of extended series, but
+single elimination and round robin are included in order to give some
+context for these results.
+
+A round robin tournament is one where every player plays every
+other. Players are then ranked according to their number of wins. This
+tournament produces a complete ranking, first through last, and
+because everyone plays everyone, it is very accurate. The down side is
+that it requires a lot of games (O(# players)) and is less exciting
+than other tournament formats. However, because it is so accurate, it
+can be used to calibrate the accuracy of elimination tournaments by
+showing a "speed of light" for tournament efficacy.
+
+Similarly, single elimination tournaments show the other end of the
+spectrum. They are very fickle in their results, and show relatively
+how much of an improvement the extended series rule makes over
+standard double elimination.
+
+2.2 MEASURING ACCURACY
+
+One of the principle challenges is determining how to measure
+performance of a tournament -- how can we say that one tournament is
+"better" than another? The approach taken is to have each tournament
+produce a ranking of players, first through last, and compare this
+ranking to the ideal ranking, as determined by players' mean
+performance.
+
+This produces its own challenges, as elimination tournaments do not
+strictly produce a ranking. However, taking seeding into account, an
+elimination tournament does sort players into categories based on how
+far they made it through the tournament. The ranking of players is
+determined as players are eliminated from the tournament -- first
+eliminated places last, and so on.
+
+Three metrics are used to measure performance: winner, depth, and
+2^depth.
+
+  * The 'winner' metric determines performance based on a very simple,
+    intuitive rule: Did the best player win? This metric is simple,
+    but unfortunately not very useful, because for even
+    moderately-sized tournaments, the best player rarely wins.
+
+  * The 'depth' metric determines performance based on how deep each
+    player made it in the tournament. Specifically, the player ranking
+    is divided into groups according to a single-elimination bracket
+    (first, second, top four, top eight, top sixteen, etc..). Then
+    each player's expected placement is calculated based on which
+    group they fall into within the ideal ranking -- the
+    fifteenth-best player should place into the top sixteen. These
+    results are compared against the actual placement from simulation,
+    and the difference from depth for all players is added to produce
+    the final "distance from ideal".
+
+  * The '2^depth' metric is similar to the depth metric, however
+    before adding up all of the depth-differences, we first calculate
+    2^(delta)-1. This is done because, intuitively, it is more
+    significant if the first player is eliminated in the round of 64
+    than if the 33rd, 34th, 35th, and 36th players make it to the
+    round of 32, but the 'depth' metric calculates these as being
+    equally bad. Essentially, this metric exaggerates says that big
+    differences in depth are more important than many small
+    differences.
 
 3. METHODOLOGY
 
+Results are gathered by running simulations of one million tournaments
+and averaging the results for each tournament. It is generally found
+that the trends in each metric are reflected in the others, except for
+the 'winner' metric, which is very sensitive to random factors and
+sometimes fluctuates independently.
+
 4. RESULTS
 
+4.1 OVERVIEW
+
+Because this discussion was inspired by MLG Dallas, the first result
+to consider the overall performance of each tournament format in a
+128-player, best-of-three tournament:
+
+Format         | Winner | Depth | 2^Depth
+---------------+--------+-------+--------
+Single         | 0.91   | 52.09 | 110.07
+Double         | 0.88   | 48.31 | 89.83
+DoubleExtended | 0.88   | 46.01 | 87.42
+RoundRobin     |
+
+Note that these are distance metrics, so lower is always better. For
+the 'winner' metric, this number indicates the fraction of the time
+that the best player did not win. So, 1 - 'winner' is the chance of
+the best player winning the entire tournament.
+
+A slight improvement can be seen from using the extended series in the
+depth metrics, however it is marginal compared to the large difference
+between single elimination and round robin tournaments. These results
+also indicate that double elimination does perform significantly
+better than single elimination, however neither come close the
+performance a round robin tournament.
+
+4.2 VARYING NUMBER OF GAMES
+
+We can also explore the effect on tournament outcomes when the number
+of games in each series is varied. (In this case, the extended series
+is also varied.) These results are graphed below.
+
+>>64-winner.png<<
+
+>>64-depth.png<<
+
+>>64-2-depth.png<<
+
+These results all show pretty much what one would expect -- using more
+games in each series improves the accuracy of the tournament
+format. However, this also visually show that the elimination
+tournaments all perform similarly, and none approach the accuracy of a
+round robin tournament. The ordering of performance is very
+consistent, however: round robin is best, followed by double
+elimination with extended series, double elimination, and single
+elimination.
+
+The depth metric doesn't show much separation between the different
+elimination tournament formats, but the winner and 2^depth metrics
+both show significant separation between single and double elimination
+formats. This indicates that the single elimination format produces
+more big differences in outcome than the double elimination tournament.
+That is, more often the best player does not win, and more often good
+players don't make it as far as they should. In this respect, the
+extended series seems to make very little difference.
+
+4.3 VARYING NUMBER OF PLAYERS
+
+
+
+4.4 EFFECT OF EXTENDED SERIES
+
 5. CONCLUSION
+
+None of the elimination tournaments come close to round robin. Explore other tournament formats.
 
 6. SEE ALSO
 
