@@ -3,19 +3,12 @@ package tournament
 import (
 	"./player"
 	"math"
+	"rand"
+	"time"
 )
 
 type Tournament interface {
-	Run(player.Array) []int
-	SetMatch(Match)
-}
-
-type tournamentBase struct {
-	match Match
-}
-
-func (t *tournamentBase) SetMatch(m Match) {
-	t.match = m
+	Run(player.Array, Match) []int
 }
 
 func intlog(a int) int {
@@ -41,33 +34,39 @@ func initialSeeds(len int) []int {
 	return array
 }
 
-type Match struct {
+type Match interface {
+	Play(i, j int, array player.Array, rand *rand.Rand) (int, int, int)
+}
+
+type BestOfMatch struct {
 	Games int
 }
 
-func (m Match) Play(i, j int, array player.Array) (int, int) {
+func (m BestOfMatch) Play(i, j int, array player.Array, rand *rand.Rand) (int, int, int) {
 	iwins, jwins := 0, 0
+	games := 0
 	for {
-		if winner, _ := array.Play(i,j); winner == i {
+		games++
+		if winner, _ := array.Play(i,j,rand); winner == i {
 			iwins++
 		} else {
 			jwins++
 		}
 
 		if iwins > m.Games / 2 {
-			return i, j
+			return i, j, games
 		} else if jwins > m.Games / 2 {
-			return j, i
+			return j, i, games
 		}
 	}
 	panic(nil)
 }
 
 type SingleElimination struct {
-	tournamentBase
 }
 
-func (t SingleElimination) Run(array player.Array) []int {
+func (t SingleElimination) Run(array player.Array, match Match) []int {
+	rand := rand.New(rand.NewSource(time.Seconds()))
 	results := make([]int, array.Len())
 	num_ranked := len(results) - 1
 
@@ -85,7 +84,7 @@ func (t SingleElimination) Run(array player.Array) []int {
 			a := rounds[r-1][2 * i]
 			b := rounds[r-1][2 * i + 1]
 
-			rounds[r][i], results[num_ranked] = t.match.Play(a, b, array)
+			rounds[r][i], results[num_ranked], _ = match.Play(a, b, array, rand)
 			num_ranked--
 		}
 	}
@@ -100,17 +99,224 @@ func (t SingleElimination) Run(array player.Array) []int {
 }
 
 type DoubleElimination struct {
-	tournamentBase
 }
 
-func (t DoubleElimination) Run(array player.Array) []int {
+func (t DoubleElimination) Run(array player.Array, match Match) []int {
+	rand := rand.New(rand.NewSource(time.Seconds()))
 	results := make([]int, array.Len())
 	num_ranked := len(results) - 1
 	
+	// Double elim tourney needs 3 brackets -- winners, losers
+	// (losers play each other) and loservswinners (losers play
+	// people coming down from winners bracket). Technically,
+	// losers and loservswinners are both parts of the losers
+	// bracket.
 	winners := make([][]int, intlog(array.Len())+1)
+	losers := make([][]int, intlog(array.Len())+1)
+	losersvswinners := make([][]int, intlog(array.Len())+1)
+
 	winners[0] = initialSeeds(array.Len())
 
+	for r := 1; ; r++ {
+		if len(winners[r-1])/2 == 0 {
+			break
+		}
+
+		// Create next round
+		winners[r] = make([]int, len(winners[r-1])/2)
+		losers[r] = make([]int, len(winners[r-1])/2)
+		losersvswinners[r] = make([]int, len(winners[r-1])/2)
+
+		// Fill in this round
+		for i := range winners[r] {
+			// Play winners bracket, knocking someone down to losersvswinners bracket
+			a := winners[r-1][2 * i]
+			b := winners[r-1][2 * i + 1]
+
+			winners[r][i], losersvswinners[r][i], _ = match.Play(a, b, array, rand)
+		}
+
+		// There is no losers bracket in the first round...
+		if r == 1 {
+			losers[r] = losersvswinners[r]
+			continue
+		}
+
+		for i := range losers[r] {
+			// Otherwise, we play the losers bracket and then put the losers against the winners
+			a := losers[r-1][2 * i]
+			b := losers[r-1][2 * i + 1]
+
+			losers[r][i], results[num_ranked], _ = match.Play(a, b, array, rand)
+			num_ranked--
+
+			a = losers[r][i]
+			b = losersvswinners[r][i]
+
+			losers[r][i], results[num_ranked], _ = match.Play(a, b, array, rand)
+			num_ranked--
+		}
+	}
+
+	// Some special logic for finals -- losers champ has to beat winner twice
+	winnerchamp := winners[len(winners)-1][0]
+	loserchamp := losers[len(losers)-1][0]
+
+	w1, l1, _ := match.Play(winnerchamp, loserchamp, array, rand)
+	w2, _, _ := match.Play(w1, l1, array, rand)
+
+	if w1 == loserchamp && w2 == loserchamp {
+		winnerchamp, loserchamp = loserchamp, winnerchamp
+	}
+	results[num_ranked] = loserchamp
 	num_ranked--
+	results[num_ranked] = winnerchamp
+
+	if num_ranked != 0 {
+		panic("Didn't rank all the players!")
+	}
+
+	return results
+}
+
+type DoubleEliminationExtendedSeries struct {
+}
+
+type ExtendedSeriesMatch struct {
+	match BestOfMatch
+	a, b int
+	gamehistory [][]int
+}
+
+var NumExtendedSeries int = 0
+
+func (m ExtendedSeriesMatch) Play(i, j int, array player.Array, rand *rand.Rand) (int, int, int) {
+	var agames, bgames, ngames int
+
+	towin := (m.match.Games + 1) / 2
+	if m.gamehistory[m.a][m.b] != 0 {
+		NumExtendedSeries++
+		agames, bgames = towin, m.gamehistory[m.a][m.b] - towin
+		ngames = m.match.Games * 2 + 1
+	} else if m.gamehistory[m.b][m.a] != 0 {
+		NumExtendedSeries++
+		agames, bgames = m.gamehistory[m.b][m.a] - towin, towin
+		ngames = m.match.Games * 2 + 1
+	} else {
+		agames, bgames = 0, 0
+		ngames = m.match.Games
+	}
+
+	iwins, jwins := agames, bgames
+	games := iwins + jwins
+	for {
+		games++
+		if winner, _ := array.Play(i,j,rand); winner == i {
+			iwins++
+		} else {
+			jwins++
+		}
+
+		if iwins > ngames / 2 {
+			return i, j, games
+		} else if jwins > ngames / 2 {
+			return j, i, games
+		}
+	}
+	panic(nil)
+}
+
+func (t DoubleEliminationExtendedSeries) Run(array player.Array, match Match) []int {
+	rand := rand.New(rand.NewSource(time.Seconds()))
+	results := make([]int, array.Len())
+	num_ranked := len(results) - 1
+	
+	// Double elim tourney needs 3 brackets -- winners, losers
+	// (losers play each other) and loservswinners (losers play
+	// people coming down from winners bracket). Technically,
+	// losers and loservswinners are both parts of the losers
+	// bracket.
+	winners := make([][]int, intlog(array.Len())+1)
+	losers := make([][]int, intlog(array.Len())+1)
+	losersvswinners := make([][]int, intlog(array.Len())+1)
+
+	// State for each player on who has killed them and their score in that series...
+	gamehistory := make([][]int, array.Len())
+	for i := range gamehistory {
+		gamehistory[i] = make([]int, array.Len())
+		for j := range gamehistory[i] {
+			gamehistory[i][j] = 0
+		}
+	}
+
+	// TODO: Need new match method that returns loser's # of wins, or modify existing
+
+	winners[0] = initialSeeds(array.Len())
+
+	for r := 1; ; r++ {
+		if len(winners[r-1])/2 == 0 {
+			break
+		}
+
+		// Create next round
+		winners[r] = make([]int, len(winners[r-1])/2)
+		losers[r] = make([]int, len(winners[r-1])/2)
+		losersvswinners[r] = make([]int, len(winners[r-1])/2)
+
+		// Fill in this round
+		for i := range winners[r] {
+			// Play winners bracket, knocking someone down to losersvswinners bracket
+			a := winners[r-1][2 * i]
+			b := winners[r-1][2 * i + 1]
+
+			winner, loser, games := match.Play(a, b, array, rand)
+			
+			winners[r][i], losersvswinners[r][i] = winner, loser
+			gamehistory[winner][loser] = games
+		}
+
+		// There is no losers bracket in the first round...
+		if r == 1 {
+			losers[r] = losersvswinners[r]
+			continue
+		}
+
+		for i := range losers[r] {
+			// Otherwise, we play the losers bracket and then put the losers against the winners
+			a := losers[r-1][2 * i]
+			b := losers[r-1][2 * i + 1]
+
+			// Here is where we need to employ extended series rule
+			ext_match := ExtendedSeriesMatch{match.(BestOfMatch), a, b, gamehistory}
+			losers[r][i], results[num_ranked], _ = ext_match.Play(a, b, array, rand)
+			num_ranked--
+
+			a = losers[r][i]
+			b = losersvswinners[r][i]
+
+			ext_match = ExtendedSeriesMatch{match.(BestOfMatch), a, b, gamehistory}
+			losers[r][i], results[num_ranked], _ = ext_match.Play(a, b, array, rand)
+			num_ranked--
+		}
+	}
+
+	// Some special logic for finals -- losers champ has to beat winner twice
+	winnerchamp := winners[len(winners)-1][0]
+	loserchamp := losers[len(losers)-1][0]
+
+	w1, l1, _ := match.Play(winnerchamp, loserchamp, array, rand)
+	w2, _, _ := match.Play(w1, l1, array, rand)
+
+	if w1 == loserchamp && w2 == loserchamp {
+		winnerchamp, loserchamp = loserchamp, winnerchamp
+	}
+	results[num_ranked] = loserchamp
+	num_ranked--
+	results[num_ranked] = winnerchamp
+
+	if num_ranked != 0 {
+		panic("Didn't rank all the players!")
+	}
 
 	return results
 }

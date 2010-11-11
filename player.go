@@ -19,12 +19,14 @@ func RandPlayer() *Player {
 		PlayerDevRange }
 }
 
-func (p Player) performance() float64 {
-	return p.mean + (rand.Float64() * 2.0 - 1.0) * p.dev
+func (p Player) performance(r *rand.Rand) float64 {
+	dev := (r.Float64() * 2.0 - 1.0)
+	dev = math.Fabs(dev) * dev * p.dev
+	return p.mean + dev
 }
 
-func (p Player) Defeats(r Player) bool {
-	return p.performance() > r.performance()
+func (p Player) Defeats(r Player, rand *rand.Rand) bool {
+	return p.performance(rand) > r.performance(rand)
 }
 
 type Array []*Player
@@ -54,8 +56,8 @@ func (a Array) Swap(i, j int) {
 	a[i], a[j] = a[j], a[i]
 }
 
-func (a Array) Play(i, j int) (int, int) {
-	if a[i].Defeats(*a[j]) {
+func (a Array) Play(i, j int, rand *rand.Rand) (int, int) {
+	if a[i].Defeats(*a[j], rand) {
 		return i, j
 	} else {
 		return j, i
@@ -109,7 +111,7 @@ func (a Array) DistanceByDepthExponential(ranking []int) float64 {
 		// This means player j was ranked at position i
 		ideal_ranking := depth(j, len(ranking))
 		actual_ranking := depth(i, len(ranking))
-		dist += math.Exp2(math.Fabs(ideal_ranking - actual_ranking))
+		dist += math.Exp2(math.Fabs(ideal_ranking - actual_ranking)) - 1.0
 	}
 
 	return dist

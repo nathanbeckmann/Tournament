@@ -4,52 +4,81 @@ import (
 	"./player"
 	"./tournament"
 	"fmt"
-	"rand"
-	"time"
+// 	"runtime"
+	"container/vector"
+	"sort"
 )
 
 const ITERATIONS = 10000
-const CHECKPOINT = 10000
 const GAMES = 7
 
-func simulate(array player.Array, tourney tournament.Tournament) {
-	dist := make([]float64, 3)
-
-	fmt.Println("Games , Win   , Depth , DepthExp")
+func simulate(retch chan string, array player.Array, tourney tournament.Tournament) {
+	out := fmt.Sprintf("%T\n", tourney)
+	out = fmt.Sprintln(out, "Games , Win   , Depth , DepthExp")
+	subch := make(chan string)
 
 	for g := 1; g <= GAMES; g += 2 {
-		tourney.SetMatch(tournament.Match{g})
+		go func(g int) {
+			dist := make([]float64, 3)
 
-		for i := 0; i < ITERATIONS; i++ {
-			result := tourney.Run(array)
-			// 		fmt.Println(result)
-			dist[0] += array.DistanceByFirst(result)
-			dist[1] += array.DistanceByDepth(result)
-			dist[2] += array.DistanceByDepthExponential(result)
+			match := tournament.BestOfMatch{g}
+			out := ""
 
-			if i % CHECKPOINT == 0 && i > 0 {
-				fmt.Println(i, dist)
+			for i := 0; i < ITERATIONS; i++ {
+				result := tourney.Run(array, match)
+				dist[0] += array.DistanceByFirst(result)
+				dist[1] += array.DistanceByDepth(result)
+				dist[2] += array.DistanceByDepthExponential(result)
 			}
-		}
 
-		for i := range dist {
-			dist[i] /= ITERATIONS
-		}
+			for i := range dist {
+				dist[i] /= ITERATIONS
+			}
 
-		fmt.Printf("%5d", g)
-		for _, d := range dist {
-			fmt.Printf(" , %5.2f", d)
-		}
-		fmt.Println()
+			out = fmt.Sprintf("%5d", g)
+			for _, d := range dist {
+				out = fmt.Sprintf("%s , %5.2f", out, d)
+			}
+			out = fmt.Sprintln(out)
+
+			subch <- out
+		}(g)
 	}
+
+	results := vector.StringVector{}
+
+	for g := 1; g <= GAMES; g += 2 {
+		results.Push(<-subch)
+	}
+	sort.Sort(&results)
+	for _, s := range results {
+		out = fmt.Sprint(out, s)
+	}
+	out = fmt.Sprintln(out)
+
+	retch <- out
 }
 
 func main() {
-	rand.Seed(time.Seconds())
+// 	runtime.GOMAXPROCS(8)
+	array := player.NewArray(512)
+	ch := make(chan string)
 
-	array := player.NewArray(128)
+	single := &tournament.SingleElimination{}
+  	go simulate(ch, array, single)
 
-	tourney := &tournament.SingleElimination{}
+	double := &tournament.DoubleElimination{}
+ 	go simulate(ch, array, double)
 
-	simulate(array, tourney)
+	double_extended := &tournament.DoubleEliminationExtendedSeries{}
+ 	go simulate(ch, array, double_extended)
+// 	tournament.Tournament(double_extended).SetMatch(tournament.BestOfMatch{3})
+// 	for i := 0; i < 1000; i++ {
+// 		tournament.Tournament(double_extended).Run(array)
+// 	}
+// 	fmt.Println(tournament.NumExtendedSeries)
+
+	for i := 0; i < 3; i++ {
+		fmt.Print(<-ch)
+	}
 }
