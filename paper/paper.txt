@@ -338,12 +338,12 @@ bracket.
 The worst possible outcome is when the better play wins in the
 winners' bracket and loses the extended series. The extended series
 does well here, only introducing 0.55 such results per tournament, or
-3% of the extended series.
+4% of the extended series.
 
 Considering the disadvantage that the better player has when entering
 the extended series, it does surprisingly well at correcting these
 results, succeeding 58% of the time. At the same time, it only
-introduces bad results 3% of the time.
+introduces bad results 4% of the time.
 
 I am tempted to conlude that extended series is successful at letting
 the better player continue in the tournament, however data is missing
@@ -351,7 +351,7 @@ to compare against a standard double elimination tournament. A good
 area of extension for this study would be measuring the outcome if a
 regular best-of-three were done, and comparing its
 correction/injustice rate to the extended series. The ratio from the
-extended series (58%/3%) seems pretty hard to beat -- I would expect a
+extended series (58%/4%) seems pretty hard to beat -- I would expect a
 best-of-three to allow the better play to proceed more often, but have
 a much higher injustice rate.
 
