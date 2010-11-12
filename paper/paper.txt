@@ -144,7 +144,9 @@ the better players win more often.
 
 To generate a set of players for a tournament, each player's mean is
 selected uniformly from [0,2]. This is probably inaccurate -- player's
-mean performance is likely distributed on a normal curve.
+mean performance is likely distributed on a normal curve. The player
+model is probably the biggest weakness in this study, however I still
+believe the first-order effects are well captured in the analysis.
 
 2.1 TOURNAMENT MODEL
 
@@ -295,6 +297,22 @@ of a 512-player round robin tournament to finish. So instead, I
 simulated fifty thousand simulations. Consequently, there is a little
 more noise in these results.
 
+>>players-winner.png<<
+
+>>players-depth.png<<
+
+>>players-2-depth.png<<
+
+These graphs don't show anything particularly revealing compared with
+the last section, but they do confirm that the trends hold over a
+variety of tournament sizes. Single elimination does worse than double
+elimination formats, and round robin is much better than the
+elimination formats. This is particularly true with large numbers of
+players -- but in this range, it is an unfair comparison, because
+round robin plays many more games. Most relevant to this post,
+extended series seems to have minimal effect on results for large
+numbers of players, particularly when considering 2^depth.
+
 4.4 EFFECT OF EXTENDED SERIES
 
 We now consider the effect of the extended series in
@@ -339,9 +357,36 @@ a much higher injustice rate.
 
 5. CONCLUSION
 
-None of the elimination tournaments come close to round robin. Explore other tournament formats.
+Whe considering individual matches, the extended series appears to
+perform well to make sure the better player continues in the
+tournament. In this sense, it fulfills its purpose.
+
+But when looking at the larger picture, it appears that the extended
+series has little effect on the outcome. While the extended series
+rule does slightly improve outcomes, these differences are not
+particularly significant compared to the overall double elimination
+format.
+
+What is clear from these results is that both elimination formats
+leave much to be desired when compared to a round robin
+tournament. Although round-robin is impractical due its large number
+of games, other tournament formats such as swiss-style or those with
+rounds play deserve further consideration.
+
+Another future area of work is considering the performance of a
+points-based system of several double elimination tournaments, like
+MLG employs for its full Starcraft II season.
 
 6. SEE ALSO
 
+Wikipedia on tournament formats:
+http://en.wikipedia.org/wiki/Single-elimination_tournament
+http://en.wikipedia.org/wiki/Swiss_style_tournament
+
 6.1 SOURCE CODE
 
+The source code is available via git at:
+
+git://github.com/nathanbeckmann/Tournament.git
+
+It is written in Go. Have fun!
