@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     60794,       1375]
-NotebookOptionsPosition[     59599,       1332]
-NotebookOutlinePosition[     59941,       1347]
-CellTagsIndexPosition[     59898,       1344]
+NotebookDataLength[     92177,       2009]
+NotebookOptionsPosition[     90931,       1965]
+NotebookOutlinePosition[     91273,       1980]
+CellTagsIndexPosition[     91230,       1977]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -137,21 +137,74 @@ Cell[BoxData[
        RowBox[{"True", ",", "False"}], "}"}], ",", 
       RowBox[{"{", 
        RowBox[{"True", ",", "False"}], "}"}]}], "}"}]}], ",", 
-   RowBox[{"Axes", "\[Rule]", "False"}]}], "]"}]], "Input",
+   RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+   RowBox[{"PlotMarkers", "\[Rule]", "Automatic"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.498504688602759*^9, 3.498504691657422*^9}, {
-  3.498504996705123*^9, 3.498505251189217*^9}}],
+   3.498504996705123*^9, 3.498505251189217*^9}, 3.498510667358201*^9}],
 
 Cell[BoxData[
  GraphicsBox[{InsetBox[
-    GraphicsBox[{{}, {}, 
-      {Hue[0.67, 0.6, 0.6], 
-       LineBox[{{1., 0.82}, {3., 0.81}, {5., 0.77}, {7., 0.73}}]}, 
-      {Hue[0.9060679774997897, 0.6, 0.6], 
-       LineBox[{{1., 0.83}, {3., 0.76}, {5., 0.72}, {7., 0.68}}]}, 
-      {Hue[0.1421359549995791, 0.6, 0.6], 
-       LineBox[{{1., 0.81}, {3., 0.75}, {5., 0.71}, {7., 0.67}}]}, 
-      {Hue[0.37820393249936934`, 0.6, 0.6], 
-       LineBox[{{1., 0.6}, {3., 0.53}, {5., 0.5}, {7., 0.47}}]}},
+    GraphicsBox[
+     GraphicsComplexBox[{{1., 0.82}, {3., 0.81}, {5., 0.77}, {7., 0.73}, {1., 
+      0.83}, {3., 0.76}, {5., 0.72}, {7., 0.68}, {1., 0.81}, {3., 0.75}, {5., 
+      0.71}, {7., 0.67}, {1., 0.6}, {3., 0.53}, {5., 0.5}, {7., 
+      0.47}}, {{{}, {}, 
+        {Hue[0.67, 0.6, 0.6], LineBox[{1, 2, 3, 4}]}, 
+        {Hue[0.9060679774997897, 0.6, 0.6], LineBox[{5, 6, 7, 8}]}, 
+        {Hue[0.1421359549995791, 0.6, 0.6], LineBox[{9, 10, 11, 12}]}, 
+        {Hue[0.37820393249936934`, 0.6, 0.6], LineBox[{13, 14, 15, 16}]}}, {
+        {Hue[0.67, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 1], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 2], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 3], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 4]}, 
+        {Hue[0.9060679774997897, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 5], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 6], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 7], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 8]}, 
+        {Hue[0.1421359549995791, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 9], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 10], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 11], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 12]}, 
+        {Hue[0.37820393249936934`, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 13], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 14], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 15], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 16]}, {}}}],
      AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
      AxesOrigin->{0, 0.5},
      DisplayFunction:>$DisplayFunction,
@@ -175,27 +228,59 @@ Cell[BoxData[
          GraphicsBox[{{{InsetBox[
               GraphicsBox[{
                 {Hue[0.37820393249936846`, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledUpTriangle]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.37820393249936846`, 0.6, 0.6],
+                  BackFaceColor->Hue[0.37820393249936846`, 0.6, 0.6],
+                  GraphicsColor->Hue[0.37820393249936846`, 0.6, 0.6],
+                  FontSize->10.24,
+                  
+                  FontColor->Hue[
+                   0.37820393249936846`, 0.6, 0.6]], {0.5, 0.5}]},
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 0.08}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"RoundRobin\"\>", {1.2100000000000002`, 0.58}, {-1, 0},
                Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
                 {Hue[0.1421359549995791, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledDiamond]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  BackFaceColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  GraphicsColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  FontSize->10.88,
+                  FontColor->Hue[0.1421359549995791, 0.6, 0.6]], {0.5, 0.5}]},
+               
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 1.24}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"DoubleExt\"\>", {1.2100000000000002`, 1.74}, {-1, 0},
                Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
                 {Hue[0.9060679774997897, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledSquare]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  BackFaceColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  GraphicsColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  FontSize->8.96,
+                  FontColor->Hue[0.9060679774997897, 0.6, 0.6]], {0.5, 0.5}]},
+               
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 2.4}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"Double\"\>", {1.2100000000000002`, 2.9}, {-1, 0}, 
               Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
-                {Hue[0.67, 0.6, 0.6], LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                {Hue[0.67, 0.6, 0.6], LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledCircle]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.67, 0.6, 0.6],
+                  BackFaceColor->Hue[0.67, 0.6, 0.6],
+                  GraphicsColor->Hue[0.67, 0.6, 0.6],
+                  FontSize->8.96,
+                  FontColor->Hue[0.67, 0.6, 0.6]], {0.5, 0.5}]},
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 3.56}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"Single\"\>", \
@@ -210,8 +295,8 @@ Cell[BoxData[
   ImageSize->Automatic,
   PlotRange->All]], "Output",
  CellChangeTimes->{{3.4985050609355307`*^9, 3.498505095622223*^9}, {
-  3.498505142241005*^9, 3.498505175601706*^9}, {3.498505209963272*^9, 
-  3.49850525170781*^9}}]
+   3.498505142241005*^9, 3.498505175601706*^9}, {3.498505209963272*^9, 
+   3.49850525170781*^9}, 3.4985106686834106`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -249,21 +334,74 @@ Cell[BoxData[
        RowBox[{"True", ",", "False"}], "}"}], ",", 
       RowBox[{"{", 
        RowBox[{"True", ",", "False"}], "}"}]}], "}"}]}], ",", 
-   RowBox[{"Axes", "\[Rule]", "False"}]}], "]"}]], "Input",
+   RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+   RowBox[{"PlotMarkers", "\[Rule]", "Automatic"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.498504688602759*^9, 3.498504691657422*^9}, {
-  3.498504996705123*^9, 3.498505267522511*^9}}],
+   3.498504996705123*^9, 3.498505267522511*^9}, 3.498510665680092*^9}],
 
 Cell[BoxData[
  GraphicsBox[{InsetBox[
-    GraphicsBox[{{}, {}, 
-      {Hue[0.67, 0.6, 0.6], 
-       LineBox[{{1., 31.62}, {3., 24.08}, {5., 19.42}, {7., 16.26}}]}, 
-      {Hue[0.9060679774997897, 0.6, 0.6], 
-       LineBox[{{1., 29.56}, {3., 21.61}, {5., 17.97}, {7., 15.81}}]}, 
-      {Hue[0.1421359549995791, 0.6, 0.6], 
-       LineBox[{{1., 28.7}, {3., 20.42}, {5., 16.68}, {7., 14.45}}]}, 
-      {Hue[0.37820393249936934`, 0.6, 0.6], 
-       LineBox[{{1., 14.6}, {3., 11.45}, {5., 10.11}, {7., 9.16}}]}},
+    GraphicsBox[
+     GraphicsComplexBox[{{1., 31.62}, {3., 24.08}, {5., 19.42}, {7., 16.26}, {
+      1., 29.56}, {3., 21.61}, {5., 17.97}, {7., 15.81}, {1., 28.7}, {3., 
+      20.42}, {5., 16.68}, {7., 14.45}, {1., 14.6}, {3., 11.45}, {5., 
+      10.11}, {7., 9.16}}, {{{}, {}, 
+        {Hue[0.67, 0.6, 0.6], LineBox[{1, 2, 3, 4}]}, 
+        {Hue[0.9060679774997897, 0.6, 0.6], LineBox[{5, 6, 7, 8}]}, 
+        {Hue[0.1421359549995791, 0.6, 0.6], LineBox[{9, 10, 11, 12}]}, 
+        {Hue[0.37820393249936934`, 0.6, 0.6], LineBox[{13, 14, 15, 16}]}}, {
+        {Hue[0.67, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 1], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 2], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 3], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 4]}, 
+        {Hue[0.9060679774997897, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 5], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 6], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 7], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 8]}, 
+        {Hue[0.1421359549995791, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 9], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 10], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 11], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 12]}, 
+        {Hue[0.37820393249936934`, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 13], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 14], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 15], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 16]}, {}}}],
      AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
      AxesOrigin->{0, 10.},
      DisplayFunction:>$DisplayFunction,
@@ -287,27 +425,59 @@ Cell[BoxData[
          GraphicsBox[{{{InsetBox[
               GraphicsBox[{
                 {Hue[0.37820393249936846`, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledUpTriangle]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.37820393249936846`, 0.6, 0.6],
+                  BackFaceColor->Hue[0.37820393249936846`, 0.6, 0.6],
+                  GraphicsColor->Hue[0.37820393249936846`, 0.6, 0.6],
+                  FontSize->10.24,
+                  
+                  FontColor->Hue[
+                   0.37820393249936846`, 0.6, 0.6]], {0.5, 0.5}]},
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 0.08}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"RoundRobin\"\>", {1.2100000000000002`, 0.58}, {-1, 0},
                Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
                 {Hue[0.1421359549995791, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledDiamond]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  BackFaceColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  GraphicsColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  FontSize->10.88,
+                  FontColor->Hue[0.1421359549995791, 0.6, 0.6]], {0.5, 0.5}]},
+               
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 1.24}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"DoubleExt\"\>", {1.2100000000000002`, 1.74}, {-1, 0},
                Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
                 {Hue[0.9060679774997897, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledSquare]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  BackFaceColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  GraphicsColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  FontSize->8.96,
+                  FontColor->Hue[0.9060679774997897, 0.6, 0.6]], {0.5, 0.5}]},
+               
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 2.4}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"Double\"\>", {1.2100000000000002`, 2.9}, {-1, 0}, 
               Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
-                {Hue[0.67, 0.6, 0.6], LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                {Hue[0.67, 0.6, 0.6], LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledCircle]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.67, 0.6, 0.6],
+                  BackFaceColor->Hue[0.67, 0.6, 0.6],
+                  GraphicsColor->Hue[0.67, 0.6, 0.6],
+                  FontSize->8.96,
+                  FontColor->Hue[0.67, 0.6, 0.6]], {0.5, 0.5}]},
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 3.56}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"Single\"\>", \
@@ -321,7 +491,7 @@ Cell[BoxData[
   ColorOutput->Automatic,
   ImageSize->Automatic,
   PlotRange->All]], "Output",
- CellChangeTimes->{3.498505267855344*^9}]
+ CellChangeTimes->{3.498505267855344*^9, 3.4985106708947067`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -360,21 +530,74 @@ Cell[BoxData[
        RowBox[{"True", ",", "False"}], "}"}], ",", 
       RowBox[{"{", 
        RowBox[{"True", ",", "False"}], "}"}]}], "}"}]}], ",", 
-   RowBox[{"Axes", "\[Rule]", "False"}]}], "]"}]], "Input",
+   RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+   RowBox[{"PlotMarkers", "\[Rule]", "Automatic"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.498504688602759*^9, 3.498504691657422*^9}, {
-  3.498504996705123*^9, 3.4985053010416183`*^9}}],
+   3.498504996705123*^9, 3.4985053010416183`*^9}, 3.498510664134459*^9}],
 
 Cell[BoxData[
  GraphicsBox[{InsetBox[
-    GraphicsBox[{{}, {}, 
-      {Hue[0.67, 0.6, 0.6], 
-       LineBox[{{1., 54.97}, {3., 41.15}, {5., 31.19}, {7., 25.57}}]}, 
-      {Hue[0.9060679774997897, 0.6, 0.6], 
-       LineBox[{{1., 47.05}, {3., 31.56}, {5., 24.74}, {7., 21.14}}]}, 
-      {Hue[0.1421359549995791, 0.6, 0.6], 
-       LineBox[{{1., 47.21}, {3., 30.15}, {5., 23.35}, {7., 19.09}}]}, 
-      {Hue[0.37820393249936934`, 0.6, 0.6], 
-       LineBox[{{1., 17.83}, {3., 13.23}, {5., 11.54}, {7., 10.42}}]}},
+    GraphicsBox[
+     GraphicsComplexBox[{{1., 54.97}, {3., 41.15}, {5., 31.19}, {7., 25.57}, {
+      1., 47.05}, {3., 31.56}, {5., 24.74}, {7., 21.14}, {1., 47.21}, {3., 
+      30.15}, {5., 23.35}, {7., 19.09}, {1., 17.83}, {3., 13.23}, {5., 
+      11.54}, {7., 10.42}}, {{{}, {}, 
+        {Hue[0.67, 0.6, 0.6], LineBox[{1, 2, 3, 4}]}, 
+        {Hue[0.9060679774997897, 0.6, 0.6], LineBox[{5, 6, 7, 8}]}, 
+        {Hue[0.1421359549995791, 0.6, 0.6], LineBox[{9, 10, 11, 12}]}, 
+        {Hue[0.37820393249936934`, 0.6, 0.6], LineBox[{13, 14, 15, 16}]}}, {
+        {Hue[0.67, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 1], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 2], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 3], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 4]}, 
+        {Hue[0.9060679774997897, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 5], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 6], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 7], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 8]}, 
+        {Hue[0.1421359549995791, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 9], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 10], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 11], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 12]}, 
+        {Hue[0.37820393249936934`, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 13], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 14], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 15], InsetBox[
+          StyleBox["\<\"\[FilledUpTriangle]\"\>",
+           StripOnInput->False,
+           FontSize->10.24], 16]}, {}}}],
      AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
      AxesOrigin->{0, 10.},
      DisplayFunction:>$DisplayFunction,
@@ -400,27 +623,59 @@ Cell[BoxData[
          GraphicsBox[{{{InsetBox[
               GraphicsBox[{
                 {Hue[0.37820393249936846`, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledUpTriangle]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.37820393249936846`, 0.6, 0.6],
+                  BackFaceColor->Hue[0.37820393249936846`, 0.6, 0.6],
+                  GraphicsColor->Hue[0.37820393249936846`, 0.6, 0.6],
+                  FontSize->10.24,
+                  
+                  FontColor->Hue[
+                   0.37820393249936846`, 0.6, 0.6]], {0.5, 0.5}]},
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 0.08}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"RoundRobin\"\>", {1.2100000000000002`, 0.58}, {-1, 0},
                Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
                 {Hue[0.1421359549995791, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledDiamond]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  BackFaceColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  GraphicsColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  FontSize->10.88,
+                  FontColor->Hue[0.1421359549995791, 0.6, 0.6]], {0.5, 0.5}]},
+               
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 1.24}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"DoubleExt\"\>", {1.2100000000000002`, 1.74}, {-1, 0},
                Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
                 {Hue[0.9060679774997897, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledSquare]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  BackFaceColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  GraphicsColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  FontSize->8.96,
+                  FontColor->Hue[0.9060679774997897, 0.6, 0.6]], {0.5, 0.5}]},
+               
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 2.4}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"Double\"\>", {1.2100000000000002`, 2.9}, {-1, 0}, 
               Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
-                {Hue[0.67, 0.6, 0.6], LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                {Hue[0.67, 0.6, 0.6], LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledCircle]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.67, 0.6, 0.6],
+                  BackFaceColor->Hue[0.67, 0.6, 0.6],
+                  GraphicsColor->Hue[0.67, 0.6, 0.6],
+                  FontSize->8.96,
+                  FontColor->Hue[0.67, 0.6, 0.6]], {0.5, 0.5}]},
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 3.56}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"Single\"\>", \
@@ -434,7 +689,8 @@ Cell[BoxData[
   ColorOutput->Automatic,
   ImageSize->Automatic,
   PlotRange->All]], "Output",
- CellChangeTimes->{{3.4985052849494457`*^9, 3.498505301386879*^9}}]
+ CellChangeTimes->{{3.4985052849494457`*^9, 3.498505301386879*^9}, 
+   3.4985106722620287`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -542,8 +798,7 @@ Cell[BoxData[
       RowBox[{"-", ".25"}]}], "}"}]}], ",", 
    RowBox[{"FrameLabel", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"\"\<Num. Games in Series\>\"", ",", "\"\<Winner\>\""}], "}"}]}],
-    ",", 
+     RowBox[{"\"\<Num. Players\>\"", ",", "\"\<Winner\>\""}], "}"}]}], ",", 
    RowBox[{"Frame", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{
@@ -556,7 +811,8 @@ Cell[BoxData[
    RowBox[{"PlotMarkers", "\[Rule]", "Automatic"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.498504688602759*^9, 3.498504691657422*^9}, {
   3.498504996705123*^9, 3.4985053010416183`*^9}, {3.498510461300891*^9, 
-  3.498510526879353*^9}, {3.498510622807317*^9, 3.498510641102908*^9}}],
+  3.498510526879353*^9}, {3.498510622807317*^9, 3.498510641102908*^9}, {
+  3.498510983443947*^9, 3.498510986555835*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{InsetBox[
@@ -660,7 +916,7 @@ fpg8zH5U88Xg7iHWfluwBa/g9sP0w+w/DPRt/6G3cPvlwQa8hdsP48PsLwQb
      FormatType->TraditionalForm,
      Frame->{{True, False}, {True, False}},
      FrameLabel->{
-       FormBox["\"Num. Games in Series\"", TraditionalForm], 
+       FormBox["\"Num. Players\"", TraditionalForm], 
        FormBox["\"Winner\"", TraditionalForm]},
      FrameTicks->{{Automatic, Automatic}, {{{2.302585092994046, 
           FormBox["10", TraditionalForm]}, {2.995732273553991, 
@@ -845,7 +1101,8 @@ fpg8zH5U88Xg7iHWfluwBa/g9sP0w+w/DPRt/6G3cPvlwQa8hdsP48PsLwQb
   ImageSize->Automatic,
   PlotRange->All]], "Output",
  CellChangeTimes->{
-  3.498510538478396*^9, {3.498510627770789*^9, 3.498510641568427*^9}}]
+  3.498510538478396*^9, {3.498510627770789*^9, 3.498510641568427*^9}, 
+   3.498510986999983*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -874,8 +1131,7 @@ Cell[BoxData[
       RowBox[{"-", ".25"}]}], "}"}]}], ",", 
    RowBox[{"FrameLabel", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"\"\<Num. Games in Series\>\"", ",", "\"\<Depth\>\""}], "}"}]}], 
-   ",", 
+     RowBox[{"\"\<Num. Players\>\"", ",", "\"\<Depth\>\""}], "}"}]}], ",", 
    RowBox[{"Frame", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{
@@ -889,26 +1145,98 @@ Cell[BoxData[
  CellChangeTimes->{{3.498504688602759*^9, 3.498504691657422*^9}, {
    3.498504996705123*^9, 3.4985053010416183`*^9}, {3.498510461300891*^9, 
    3.498510535585677*^9}, {3.498510568944847*^9, 3.498510591765469*^9}, 
-   3.498510650240797*^9}],
+   3.498510650240797*^9, {3.498510976737177*^9, 3.498510979092165*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{InsetBox[
-    GraphicsBox[{{}, {}, 
-      {Hue[0.67, 0.6, 0.6], 
-       LineBox[{{1.3862943611198906`, 3.1}, {2.0794415416798357`, 7.93}, {
-        2.772588722239781, 18.46}, {3.4657359027997265`, 36.47}, {
-        4.1588830833596715`, 67.28}, {4.852030263919617, 110.56}, {
-        5.545177444479562, 151.36}, {6.238324625039508, 193.35}}]}, 
-      {Hue[0.9060679774997897, 0.6, 0.6], 
-       LineBox[{{1.3862943611198906`, 3.11}, {2.0794415416798357`, 7.81}, {
-        2.772588722239781, 18.63}, {3.4657359027997265`, 35.44}, {
-        4.1588830833596715`, 63.68}, {4.852030263919617, 102.33}, {
-        5.545177444479562, 138.1}, {6.238324625039508, 178.28}}]}, 
-      {Hue[0.1421359549995791, 0.6, 0.6], 
-       LineBox[{{1.3862943611198906`, 3.13}, {2.0794415416798357`, 7.83}, {
-        2.772588722239781, 18.09}, {3.4657359027997265`, 35.49}, {
-        4.1588830833596715`, 63.65}, {4.852030263919617, 102.33}, {
-        5.545177444479562, 135.98}, {6.238324625039508, 166.37}}]}},
+    GraphicsBox[GraphicsComplexBox[CompressedData["
+1:eJxTTMoPSmViYGCQAGIQ/d7y1z8nvW/2Z8+AAIdD8Wpr+02LGBx2yLW+Dtwh
+7wCRZ3P4phHTf6jUyCH7xI59l3dyOwB5XzVsnKDqBRyCQBouBjhs/CQ1vypD
+2GFJgS3X9cXRUP1iDm8CQQqSHHQbb8Zxf5FwMAYB7QwHmP0Pq0TWuT9E2A/S
+XWCLsB8svxBhP8R9jnD7Qaq5rvvD7QfJyk2NhNsPts85EW6/JsgDHmlw+8HW
+cXHC7Qf7JxBhP1haHGG/PMiCfQj7weZfxm0/KLhi/ifA7QeHz+kUBwD8j67n
+
+      "], {{{}, {}, 
+        {Hue[0.67, 0.6, 0.6], LineBox[{1, 2, 3, 4, 5, 6, 7, 8}]}, 
+        {Hue[0.9060679774997897, 0.6, 0.6], 
+         LineBox[{9, 10, 11, 12, 13, 14, 15, 16}]}, 
+        {Hue[0.1421359549995791, 0.6, 0.6], 
+         LineBox[{17, 18, 19, 20, 21, 22, 23, 24}]}}, {
+        {Hue[0.67, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 1], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 2], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 3], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 4], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 5], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 6], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 7], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 8]}, 
+        {Hue[0.9060679774997897, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 9], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 10], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 11], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 12], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 13], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 14], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 15], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 16]}, 
+        {Hue[0.1421359549995791, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 17], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 18], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 19], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 20], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 21], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 22], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 23], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 24]}, {}}}],
      AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
      AxesOrigin->{1.3862943611198906`, 0.},
      CoordinatesToolOptions:>{"DisplayFunction" -> ({
@@ -922,7 +1250,7 @@ Cell[BoxData[
      FormatType->TraditionalForm,
      Frame->{{True, False}, {True, False}},
      FrameLabel->{
-       FormBox["\"Num. Games in Series\"", TraditionalForm], 
+       FormBox["\"Num. Players\"", TraditionalForm], 
        FormBox["\"Depth\"", TraditionalForm]},
      FrameTicks->{{Automatic, Automatic}, {{{2.302585092994046, 
           FormBox["10", TraditionalForm]}, {2.995732273553991, 
@@ -1054,22 +1382,45 @@ Cell[BoxData[
          GraphicsBox[{{{InsetBox[
               GraphicsBox[{
                 {Hue[0.1421359549995791, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledDiamond]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  BackFaceColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  GraphicsColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  FontSize->10.88,
+                  FontColor->Hue[0.1421359549995791, 0.6, 0.6]], {0.5, 0.5}]},
+               
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 0.08}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"DoubleExt\"\>", {1.2100000000000002`, 0.58}, {-1, 0},
                Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
                 {Hue[0.9060679774997897, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledSquare]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  BackFaceColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  GraphicsColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  FontSize->8.96,
+                  FontColor->Hue[0.9060679774997897, 0.6, 0.6]], {0.5, 0.5}]},
+               
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 1.24}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"Double\"\>", {1.2100000000000002`, 1.74}, {-1, 0}, 
               Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
-                {Hue[0.67, 0.6, 0.6], LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
-               PlotRange->{{0, 1}, {0, 1}}], {0.08, 2.4}, {Left, Bottom}, 
-              {1, 1}], 
+                {Hue[0.67, 0.6, 0.6], LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledCircle]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.67, 0.6, 0.6],
+                  BackFaceColor->Hue[0.67, 0.6, 0.6],
+                  GraphicsColor->Hue[0.67, 0.6, 0.6],
+                  FontSize->8.96,
+                  FontColor->Hue[0.67, 0.6, 0.6]], {0.5, 0.5}]},
+               PlotRange->{{0, 1}, {0, 1}}], {0.08, 2.4}, {
+              Left, Bottom}, {1, 1}], 
              InsetBox["\<\"Single\"\>", {1.2100000000000002`, 2.9}, {-1, 0}, 
               Automatic, {1, 0}]}}, {}},
           AspectRatio->1.0952380952380953`,
@@ -1085,7 +1436,7 @@ Cell[BoxData[
   PlotRange->All]], "Output",
  CellChangeTimes->{
   3.498510536021764*^9, {3.498510570854178*^9, 3.498510581206258*^9}, 
-   3.498510617103077*^9}]
+   3.498510617103077*^9, 3.498510654745737*^9, 3.498510979472752*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1115,7 +1466,7 @@ Cell[BoxData[
    RowBox[{"FrameLabel", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{
-     "\"\<Num. Games in Series\>\"", ",", 
+     "\"\<Num. Players\>\"", ",", 
       "\"\<\!\(\*SuperscriptBox[\(2\), \(Depth\)]\)\>\""}], "}"}]}], ",", 
    RowBox[{"Frame", "\[Rule]", 
     RowBox[{"{", 
@@ -1130,26 +1481,98 @@ Cell[BoxData[
  CellChangeTimes->{{3.498504688602759*^9, 3.498504691657422*^9}, {
    3.498504996705123*^9, 3.4985053010416183`*^9}, {3.498510461300891*^9, 
    3.4985104887137527`*^9}, {3.498510602234992*^9, 3.498510611446237*^9}, 
-   3.498510652448721*^9}],
+   3.498510652448721*^9, {3.498510992292211*^9, 3.498510995274642*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{InsetBox[
-    GraphicsBox[{{}, {}, 
-      {Hue[0.67, 0.6, 0.6], 
-       LineBox[{{1.3862943611198906`, 4.04}, {2.0794415416798357`, 12.78}, {
-        2.772588722239781, 36.56}, {3.4657359027997265`, 82.26}, {
-        4.1588830833596715`, 166.5}, {4.852030263919617, 267.79}, {
-        5.545177444479562, 343.18}, {6.238324625039508, 463.83}}]}, 
-      {Hue[0.9060679774997897, 0.6, 0.6], 
-       LineBox[{{1.3862943611198906`, 3.86}, {2.0794415416798357`, 12.1}, {
-        2.772588722239781, 37.07}, {3.4657359027997265`, 78.82}, {
-        4.1588830833596715`, 150.85}, {4.852030263919617, 226.71}, {
-        5.545177444479562, 288.71}, {6.238324625039508, 366.62}}]}, 
-      {Hue[0.1421359549995791, 0.6, 0.6], 
-       LineBox[{{1.3862943611198906`, 3.93}, {2.0794415416798357`, 12.34}, {
-        2.772588722239781, 35.75}, {3.4657359027997265`, 79.34}, {
-        4.1588830833596715`, 146.26}, {4.852030263919617, 232.98}, {
-        5.545177444479562, 292.12}, {6.238324625039508, 354.15}}]}},
+    GraphicsBox[GraphicsComplexBox[CompressedData["
+1:eJxTTMoPSmViYGCQAGIQ/d7y1z8nvW/2mjH9h75qCDgUr7a237SIwQHEi+nX
+dIDIszl4PKwSWefu5JB9Yse+yzu5HQptua4vnhACVS/gwAACF1IcNn6Sml+V
+IQyR31MA1S/mUA3U/bCo1EG38WYc9xcJB7Bxf2scYPaD+Q/54PYbg4EG3H6w
++zoQ9oNUV20JhtsPVn47CW6/fOvrwB1hOXD7wf7hLoLbH7RDrvX1yzK4/WD3
+FvDD7QcZL7IOYT/Yfw8c4fZ/A4bOoasI+0HGBXog7AfbJ58Ltx9snyPC/jQQ
+UCpzAADS5Kqk
+      "], {{{}, {}, 
+        {Hue[0.67, 0.6, 0.6], LineBox[{1, 2, 3, 4, 5, 6, 7, 8}]}, 
+        {Hue[0.9060679774997897, 0.6, 0.6], 
+         LineBox[{9, 10, 11, 12, 13, 14, 15, 16}]}, 
+        {Hue[0.1421359549995791, 0.6, 0.6], 
+         LineBox[{17, 18, 19, 20, 21, 22, 23, 24}]}}, {
+        {Hue[0.67, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 1], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 2], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 3], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 4], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 5], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 6], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 7], InsetBox[
+          StyleBox["\<\"\[FilledCircle]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 8]}, 
+        {Hue[0.9060679774997897, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 9], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 10], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 11], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 12], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 13], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 14], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 15], InsetBox[
+          StyleBox["\<\"\[FilledSquare]\"\>",
+           StripOnInput->False,
+           FontSize->8.96], 16]}, 
+        {Hue[0.1421359549995791, 0.6, 0.6], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 17], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 18], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 19], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 20], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 21], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 22], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 23], InsetBox[
+          StyleBox["\<\"\[FilledDiamond]\"\>",
+           StripOnInput->False,
+           FontSize->10.88], 24]}, {}}}],
      AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
      AxesOrigin->{1.3862943611198906`, 0.},
      CoordinatesToolOptions:>{"DisplayFunction" -> ({
@@ -1163,7 +1586,7 @@ Cell[BoxData[
      FormatType->TraditionalForm,
      Frame->{{True, False}, {True, False}},
      FrameLabel->{
-       FormBox["\"Num. Games in Series\"", TraditionalForm], 
+       FormBox["\"Num. Players\"", TraditionalForm], 
        FormBox[
        "\"\\!\\(\\*SuperscriptBox[\\(2\\), \\(Depth\\)]\\)\"", 
         TraditionalForm]},
@@ -1297,22 +1720,45 @@ Cell[BoxData[
          GraphicsBox[{{{InsetBox[
               GraphicsBox[{
                 {Hue[0.1421359549995791, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledDiamond]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  BackFaceColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  GraphicsColor->Hue[0.1421359549995791, 0.6, 0.6],
+                  FontSize->10.88,
+                  FontColor->Hue[0.1421359549995791, 0.6, 0.6]], {0.5, 0.5}]},
+               
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 0.08}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"DoubleExt\"\>", {1.2100000000000002`, 0.58}, {-1, 0},
                Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
                 {Hue[0.9060679774997897, 0.6, 0.6], 
-                 LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
+                 LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledSquare]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  BackFaceColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  GraphicsColor->Hue[0.9060679774997897, 0.6, 0.6],
+                  FontSize->8.96,
+                  FontColor->Hue[0.9060679774997897, 0.6, 0.6]], {0.5, 0.5}]},
+               
                PlotRange->{{0, 1}, {0, 1}}], {0.08, 1.24}, {
               Left, Bottom}, {1, 1}], 
              InsetBox["\<\"Double\"\>", {1.2100000000000002`, 1.74}, {-1, 0}, 
               Automatic, {1, 0}]}, {InsetBox[
               GraphicsBox[{
-                {Hue[0.67, 0.6, 0.6], LineBox[{{0, 0.5}, {1, 0.5}}]}, {}},
-               PlotRange->{{0, 1}, {0, 1}}], {0.08, 2.4}, {Left, Bottom}, 
-              {1, 1}], 
+                {Hue[0.67, 0.6, 0.6], LineBox[{{0, 0.5}, {1, 0.5}}]}, InsetBox[
+                 StyleBox["\<\"\[FilledCircle]\"\>",
+                  StripOnInput->False,
+                  FrontFaceColor->Hue[0.67, 0.6, 0.6],
+                  BackFaceColor->Hue[0.67, 0.6, 0.6],
+                  GraphicsColor->Hue[0.67, 0.6, 0.6],
+                  FontSize->8.96,
+                  FontColor->Hue[0.67, 0.6, 0.6]], {0.5, 0.5}]},
+               PlotRange->{{0, 1}, {0, 1}}], {0.08, 2.4}, {
+              Left, Bottom}, {1, 1}], 
              InsetBox["\<\"Single\"\>", {1.2100000000000002`, 2.9}, {-1, 0}, 
               Automatic, {1, 0}]}}, {}},
           AspectRatio->1.0952380952380953`,
@@ -1327,7 +1773,194 @@ Cell[BoxData[
   ImageSize->Automatic,
   PlotRange->All]], "Output",
  CellChangeTimes->{{3.498510463263674*^9, 3.498510489134797*^9}, {
-  3.498510606131834*^9, 3.498510611852797*^9}}]
+   3.498510606131834*^9, 3.498510611852797*^9}, 3.498510656419169*^9, 
+   3.498510995778357*^9},
+ ImageCache->GraphicsData["CompressedBitmap", "\<\
+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
+A2/03ySOZgfR+dnZ5DZ5Evkvm0FJ+0KFmVLDkbUPcWO3S8HSo60DQ9WVtQLb
+veT503zynDmOwvzdqLQ4b7nJVO+Z9HVte+W/GdjGcGzUKUZ3VmI+rV+6ltyn
+TKSgFTMpIyYCiFmWdH71AXJAeVk1hfpHkPu0uUK0jqPIQA86XZK/qPMrDJKI
+NDScp8SYw4Lf3QXvT6RNq+dQdmwkNdTVWuZ3YBlmhSGyu+hoBW3yChWaYh75
+zxtP0Ru9qLQwX5kWglj6HFM6j9JQiVJlZR1FRWSQx3xX8p0zhbZa59HhA3uo
+obZWt6rio9zIa+Wr4nRlW6Z2funn+dpdeEXnKTPjJPlbt5DXvAUUuGgixQb7
+0qkj+SwlI7fP1g1K96VDxVk6wHdO7jwIL/HVUfgilbQjJJk8F7nSuoUTBRVe
+1/WVdX5/ykrbyiMndX7JV2TfuXP1FLM/l1znfnBxqXn9KfdQWIeXYj4aJnc0
+LTKDrCPfuCiKZg+kOcO+ptNl1faS7s/yp0tFpc1M59f42o12+sWStd8PZB3+
+LlmnP0vWF7+i6f0mkducFVRxsthOdG/lPz0pKSmJrrrqKo7FoNkQ6jV1EjQo
+r6S0qGwhL8donwHO/Hdiv6nks2IdbVs9nTL2bgNPTrAP2tsktLDzVbMxwGpK
+02ESWne3eBrQz8qfgf2t5OeXwjJ3g98Bili7msK9FlBZcd74zkNrYzTTFFoV
+/cjPL6fdEXlUWFghuacrZWaeIn8BdfyOSNphnUVJEYHCTKn90WSaq2WfUQBq
+BrxTM28eTaX9EaFSjIoIn/TsxYnX+oy2Zg/Zp0JS+HaVfVSyNWZ50Qn6l5zy
+5MkqWuefSgn7cyhmnReFec2jkvzUsSbr95Z9Rmms9T3ECyE1jPAMPC54Kkg/
+qhAYIkhff/01pygRBETbu3cvx2OQIkW06fDhwwwo4o9wGXBsjPUECPEgeYwc
+EmI2paWlHM8FjEguYN6RI0dyDBgpTsQpsT/XXXcdh4Ryc3M5SSSObA8T9Noh
+r61hTDMmfFdySk1NI23bmkVhYTmUF5tEu1wWCPN8LdXWVMhIk5mX31UpIl2a
+SkWkEf4O5n8UYKjm4+PDGwHCIZacnp7O/SiiQEwSBETmBQ05ajTcHxkZyf9/
+//33vJkq5wwf7tFHH9WTTIhNI+kHUMVfjce76TUlECQIayI/h4a6jTFjxpiF
+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
+\
+\>"]]
 }, Open  ]]
 },
 WindowSize->{640, 750},
@@ -1351,31 +1984,32 @@ Cell[2810, 85, 250, 7, 27, "Input"],
 Cell[3063, 94, 172, 4, 27, "Input"],
 Cell[3238, 100, 132, 2, 27, "Input"],
 Cell[CellGroupData[{
-Cell[3395, 106, 1221, 35, 88, "Input"],
-Cell[4619, 143, 3320, 70, 190, "Output"]
+Cell[3395, 106, 1302, 36, 103, "Input"],
+Cell[4700, 144, 7251, 154, 190, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7976, 218, 1220, 35, 88, "Input"],
-Cell[9199, 255, 3212, 68, 190, "Output"]
+Cell[11988, 303, 1301, 36, 103, "Input"],
+Cell[13292, 341, 7141, 152, 190, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12448, 328, 1266, 36, 104, "Input"],
-Cell[13717, 366, 3302, 70, 190, "Output"]
+Cell[20470, 498, 1347, 37, 119, "Input"],
+Cell[21820, 537, 7235, 155, 190, "Output"]
 }, Open  ]],
-Cell[17034, 439, 2703, 62, 463, "Input"],
-Cell[19740, 503, 187, 4, 27, "Input"],
-Cell[19930, 509, 268, 7, 27, "Input"],
+Cell[29070, 695, 2703, 62, 463, "Input"],
+Cell[31776, 759, 187, 4, 27, "Input"],
+Cell[31966, 765, 268, 7, 27, "Input"],
 Cell[CellGroupData[{
-Cell[20223, 520, 1437, 38, 103, "Input"],
-Cell[21663, 560, 14174, 287, 179, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[35874, 852, 1464, 39, 103, "Input"],
-Cell[37341, 893, 10314, 194, 179, "Output"]
+Cell[32259, 776, 1474, 38, 103, "Input"],
+Cell[33736, 816, 14192, 288, 179, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[47692, 1092, 1510, 40, 119, "Input"],
-Cell[49205, 1134, 10378, 195, 179, "Output"]
+Cell[47965, 1109, 1498, 38, 103, "Input"],
+Cell[49466, 1149, 14282, 289, 179, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63785, 1443, 1548, 40, 119, "Input"],
+Cell[65336, 1485, 25579, 477, 179, 14193, 288, "CachedBoxData", "BoxData", \
+"Output"]
 }, Open  ]]
 }
 ]
