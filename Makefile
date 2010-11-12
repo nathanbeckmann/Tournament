@@ -1,4 +1,4 @@
-TARGETS = main
+TARGETS = main swiss-spread
 
 all : $(TARGETS)
 

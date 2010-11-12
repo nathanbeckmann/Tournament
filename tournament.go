@@ -5,6 +5,7 @@ import (
 	"math"
 	"rand"
 	"time"
+	"container/vector"
 )
 
 type Tournament interface {
@@ -367,6 +368,88 @@ func (t RoundRobin) Run(array player.Array, match Match) []int {
 			}
 		}
 
+		results[i] = best
+		wins[best] = -1
+	}
+
+	return results
+}
+
+type SwissStyle struct { }
+
+func (t SwissStyle) Run(array player.Array, match Match) []int {
+	rand := rand.New(rand.NewSource(time.Seconds()))
+
+	num_rounds := intlog(len(array)) * match.(BestOfMatch).Games
+	match = BestOfMatch{1}
+
+	// The number of wins for each player
+	wins := make([]int, len(array))
+
+	// The list of players each player has played so far (to avoid re-matches)
+	history := make([]vector.IntVector, num_rounds)
+
+	// Now simulate all of the rounds
+	for i := 1; i < num_rounds; i++ {
+
+		// Pick the match-ups for the next round starting with
+		// the best player, and selecting the next best that
+		// he hasn't already played
+		for j := 0; j < len(array) / 2; j++ {
+
+			// Find the next player to rank -- hasn't
+			// played this round, and has the most wins of
+			// those who haven't played so far
+			next := 0
+			for k := range wins {
+				if history[k].Len() < i && wins[k] > wins[next] {
+					next = k
+				}
+			}
+
+			// Find his opponent...
+			opp := 0
+		opploop:
+			for k := range wins {
+				if k == next {
+					continue
+				}
+				// Guarantee that next hasn't played opp
+				for _, p := range history[next] {
+					if p == k {
+						continue opploop
+					}
+				}
+				if history[k].Len() < i && wins[k] > wins[opp] {
+					opp = k
+				}
+			}
+
+			if next == opp || history[next].Len() >= i || history[opp].Len() >= i {
+				panic("Couldn't find a good match...")
+			}
+
+			// Add to each's match history...
+			history[next].Push(opp)
+			history[opp].Push(next)
+
+			// Now play the match (a single game) and update the wins
+			winner, _, _ := match.Play(next, opp, array, rand)
+			wins[winner]++
+		}
+	}
+
+	results := make([]int, array.Len())
+
+	for i := 0; i < len(results); i++ {
+		best := 0
+
+		for j := range wins {
+			if wins[j] > wins[best] {
+				best = j
+			}
+		
+		}
 		results[i] = best
 		wins[best] = -1
 	}

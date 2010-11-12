@@ -9,7 +9,7 @@ import (
 	"sort"
 )
 
-const PLAYERS = 512
+const PLAYERS = 8
 const ITERATIONS = 50000
 const GAMES = 3
 
@@ -60,7 +60,56 @@ func simulate(retch chan string, array player.Array, tourney tournament.Tourname
 	retch <- out
 }
 
-func measure_extended(double_extended tournament.Tournament) {
+func simulate_player(retch chan string, array player.Array, tourney tournament.Tournament) {
+	out := fmt.Sprintf("%T\n", tourney)
+	out = fmt.Sprintln(out, "Players , Win   , Depth , DepthExp")
+	subch := make(chan string)
+
+	var p uint
+	for p = 2; p <= 9; p ++ {
+		go func(p int) {
+			players := array[0:p]
+			dist := make([]float64, 3)
+
+			match := tournament.BestOfMatch{3}
+			out := ""
+
+			for i := 0; i < ITERATIONS; i++ {
+				result := tourney.Run(players, match)
+				dist[0] += players.DistanceByFirst(result)
+				dist[1] += players.DistanceByDepth(result)
+				dist[2] += players.DistanceByDepthExponential(result)
+			}
+
+			for i := range dist {
+				dist[i] /= ITERATIONS
+			}
+
+			out = fmt.Sprintf("%5d", p)
+			for _, d := range dist {
+				out = fmt.Sprintf("%s , %5.2f", out, d)
+			}
+			out = fmt.Sprintln(out)
+
+			subch <- out
+		}(1 << p)
+	}
+
+	results := vector.StringVector{}
+
+	for p = 2; p <= 9; p ++ {
+		results.Push(<-subch)
+	}
+	sort.Sort(&results)
+	for _, s := range results {
+		out = fmt.Sprint(out, s)
+	}
+	out = fmt.Sprintln(out)
+
+	retch <- out
+}
+
+func measure_extended(double_extended tournament.Tournament, array player.Array) {
 	tournament.NumMatches = 0
 	tournament.NumExtendedSeries = 0
 	for i := 0; i < ITERATIONS; i++ {
@@ -96,8 +145,11 @@ func main() {
 
 	roundrobin := &tournament.RoundRobin{}
 	go simulate(ch, array, roundrobin)
+	swissstyle := &tournament.SwissStyle{}
+	tournament.Tournament(swissstyle).Run(array, tournament.BestOfMatch{3})
+// 	go simulate(ch, array, swissstyle)
 
-	for i := 0; i < 4; i++ {
+	for i := 0; i < 5; i++ {
 		fmt.Print(<-ch)
 	}
 }
