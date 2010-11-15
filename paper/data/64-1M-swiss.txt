@@ -1,0 +1,21 @@
+64 players
+1000000 iterations
+*tournament.SingleElimination
+ Games , Win   , Depth , DepthExp
+    3 ,  0.79 , 24.13 , 40.13
+
+*tournament.DoubleElimination
+ Games , Win   , Depth , DepthExp
+    3 ,  0.76 , 25.71 , 44.75
+
+*tournament.DoubleEliminationExtendedSeries
+ Games , Win   , Depth , DepthExp
+    3 ,  0.79 , 18.01 , 26.60
+
+*tournament.RoundRobin
+ Games , Win   , Depth , DepthExp
+    3 ,  0.55 , 10.48 , 12.04
+
+*tournament.SwissStyle
+ Games , Win   , Depth , DepthExp
+    3 ,  0.67 , 33.38 , 43.73
