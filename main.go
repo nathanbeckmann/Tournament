@@ -9,19 +9,20 @@ import (
 	"sort"
 )
 
-const PLAYERS = 8
-const ITERATIONS = 50000
+const PLAYERS = 64
+const ITERATIONS = 10000
 const GAMES = 3
 
-func simulate(retch chan string, array player.Array, tourney tournament.Tournament) {
+func simulate(retch chan string, numplayers int, tourney tournament.Tournament) {
 	out := fmt.Sprintf("%T\n", tourney)
 	out = fmt.Sprintln(out, "Games , Win   , Depth , DepthExp")
 	subch := make(chan string)
 
-	for g := 1; g <= GAMES; g += 2 {
+	for g := GAMES; g <= GAMES; g += 2 {
 		go func(g int) {
 			dist := make([]float64, 3)
 
+			array := player.NewArray(numplayers)
 			match := tournament.BestOfMatch{g}
 			out := ""
 
@@ -48,7 +49,7 @@ func simulate(retch chan string, array player.Array, tourney tournament.Tourname
 
 	results := vector.StringVector{}
 
-	for g := 1; g <= GAMES; g += 2 {
+	for g := GAMES; g <= GAMES; g += 2 {
 		results.Push(<-subch)
 	}
 	sort.Sort(&results)
@@ -128,26 +129,26 @@ func measure_extended(double_extended tournament.Tournament, array player.Array)
 
 func main() {
   	runtime.GOMAXPROCS(1)
-	array := player.NewArray(PLAYERS)
 	ch := make(chan string)
 
 	fmt.Println(PLAYERS, " players")
 	fmt.Println(ITERATIONS, " iterations")
 
 	single := &tournament.SingleElimination{}
-  	go simulate(ch, array, single)
+  	go simulate(ch, PLAYERS, single)
 
 	double := &tournament.DoubleElimination{}
- 	go simulate(ch, array, double)
+ 	go simulate(ch, PLAYERS, double)
 
  	double_extended := &tournament.DoubleEliminationExtendedSeries{}
- 	go simulate(ch, array, double_extended)
+ 	go simulate(ch, PLAYERS, double_extended)
 
 	roundrobin := &tournament.RoundRobin{}
-	go simulate(ch, array, roundrobin)
+	go simulate(ch, PLAYERS, roundrobin)
+
 	swissstyle := &tournament.SwissStyle{}
-	tournament.Tournament(swissstyle).Run(array, tournament.BestOfMatch{3})
-// 	go simulate(ch, array, swissstyle)
+// 	fmt.Println(tournament.Tournament(swissstyle).Run(array, tournament.BestOfMatch{3}))
+	go simulate(ch, PLAYERS, swissstyle)
 
 	for i := 0; i < 5; i++ {
 		fmt.Print(<-ch)

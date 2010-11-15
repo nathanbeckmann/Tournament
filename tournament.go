@@ -5,6 +5,7 @@ import (
 	"math"
 	"rand"
 	"time"
+	"fmt"
 	"container/vector"
 )
 
@@ -382,12 +383,15 @@ func (t SwissStyle) Run(array player.Array, match Match) []int {
 
 	num_rounds := intlog(len(array)) * match.(BestOfMatch).Games
 	match = BestOfMatch{1}
+// 	num_rounds := intlog(len(array))
 
 	// The number of wins for each player
 	wins := make([]int, len(array))
 
 	// The list of players each player has played so far (to avoid re-matches)
-	history := make([]vector.IntVector, num_rounds)
+	history := make([]vector.IntVector, len(array))
+	num_matches := 0
+	num_repeats := 0
 
 	// Now simulate all of the rounds
 	for i := 1; i < num_rounds; i++ {
@@ -401,16 +405,21 @@ func (t SwissStyle) Run(array player.Array, match Match) []int {
 			// played this round, and has the most wins of
 			// those who haven't played so far
 			next := 0
+			best := -1
 			for k := range wins {
-				if history[k].Len() < i && wins[k] > wins[next] {
+// 				fmt.Println(next, k, history[k], history[k].Len(), wins[k])
+				if history[k].Len() < i && wins[k] > best {
 					next = k
+					best = wins[k]
 				}
 			}
 
 			// Find his opponent...
 			opp := 0
+			best = -1
 		opploop:
 			for k := range wins {
+// 				fmt.Println(opp, k, history[k], history[k].Len(), wins[k])
 				if k == next {
 					continue
 				}
@@ -420,23 +429,63 @@ func (t SwissStyle) Run(array player.Array, match Match) []int {
 						continue opploop
 					}
 				}
-				if history[k].Len() < i && wins[k] > wins[opp] {
+				if history[k].Len() < i && wins[k] > best {
 					opp = k
+					best = wins[k]
 				}
 			}
 
+			if best == -1 {
+				// We failed to find an opponent, so let's relax the 'double play' rule
+				for k := range wins {
+// 					fmt.Println(opp, k, history[k], history[k].Len(), wins[k])
+					if k == next {
+						continue
+					}
+					if history[k].Len() < i && wins[k] > best {
+						opp = k
+						best = wins[k]
+					}
+				}
+				if best == -1 {
+					panic("Couldn't find match, even after relaxing rules!")
+				}
+				num_repeats++
+			}
+
 			if next == opp || history[next].Len() >= i || history[opp].Len() >= i {
-				panic("Couldn't find a good match...")
+				panic(fmt.Sprintf("Couldn't find a good match... round : %d, next : %d, opp : %d", i, next, opp))
 			}
 
 			// Add to each's match history...
 			history[next].Push(opp)
 			history[opp].Push(next)
 
+// 			fmt.Printf("Round %d: %d plays %d\n", i, next, opp)
+
 			// Now play the match (a single game) and update the wins
 			winner, _, _ := match.Play(next, opp, array, rand)
 			wins[winner]++
+			num_matches++
 		}
+
+// 		fmt.Printf("Round %v standings : %v\n", i, wins)
+
+// 		min := i
+// 		max := 0
+// 		for _, w := range wins {
+// 			if w < min { min = w }
+// 			if w > max { max = w }
+// 		}
+// 		for w := min; w <= max; w++ {
+// 			fmt.Printf("%4d | ", w)
+// 			for i := range wins {
+// 				if wins[i] == w {
+// 					fmt.Printf("%d ", i)
+// 				}
+// 			}
+// 			fmt.Println()
+// 		}
 	}
 
 	results := make([]int, array.Len())
@@ -453,6 +502,8 @@ func (t SwissStyle) Run(array player.Array, match Match) []int {
 		results[i] = best
 		wins[best] = -1
 	}
+
+// 	fmt.Println("Num matches : ", num_matches, ", Num repeats : ", num_repeats)
 
 	return results
 }
